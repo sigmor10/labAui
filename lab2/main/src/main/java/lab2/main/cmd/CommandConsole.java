@@ -67,9 +67,9 @@ public class CommandConsole implements CommandLineRunner {
     }
 
     public void delete(Scanner scanner){
-        System.out.println("available phones:");
+        System.out.println("Available phones:");
         phoneServ.findAll().forEach(System.out::println);
-        System.out.println("provide id of the phone to delete:");
+        System.out.println("Provide id of the phone to delete:");
 
         try{
             UUID id = UUID.fromString(scanner.nextLine());
@@ -94,26 +94,33 @@ public class CommandConsole implements CommandLineRunner {
 
     public void addPhone(Scanner scanner){
         int mem = 0;
-        String model = getNotEmpty(scanner,"Provide model name:");
-        String modelId = getNotEmpty(scanner, "Provide model id:");
+        String model = getNotEmpty(scanner,"Provide model name (or type quit to exit the process):");
+        if(model.equals("quit")) return;
+
+        String modelId = getNotEmpty(scanner, "Provide model id (or type quit to exit the process):");
+        if(modelId.equals("quit")) return;
 
         while(mem <= 0) {
-            System.out.println("Provide memory size:");
+            System.out.println("Provide memory size in GB (or type quit to exit the process):");
             try{
-                mem = Integer.parseInt(scanner.nextLine());
-            }catch (Exception e){
-                System.out.println("value must be a positive integer");
+                String tmp = scanner.nextLine();
+                if(tmp.equals("quit")) return;
+
+                mem = Integer.parseInt(tmp);
+                if(mem <= 0) System.out.println("Number must be a positive integer.");
+            }catch (NumberFormatException e){
+                System.out.println("Value must be a positive integer.");
             }
         }
 
         while(true) {
             System.out.println("Available brands:");
             brandService.findAll().forEach(System.out::println);
-            System.out.println("Choose brand:");
-
+            System.out.println("Choose brand (or type quit to exit the process):");
             String brandName = scanner.nextLine();
-            Optional<Brand> tmp = brandService.findByName(brandName);
+            if(brandName.equals("quit")) return;
 
+            Optional<Brand> tmp = brandService.findByName(brandName);
             if(tmp.isPresent()) {
                 phoneServ.create(new SmartPhone.Builder().setModel(model)
                         .setModelId(modelId).setMemory(mem).setBrand(tmp.get()).build());

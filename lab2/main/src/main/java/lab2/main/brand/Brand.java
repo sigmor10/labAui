@@ -105,12 +105,11 @@ public class Brand implements Comparable<Brand>, Serializable {
 
     @Override
     public String toString() {
-        return "Brand{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", foundingYear=" + foundingYear +
-                ", rating=" + rating +
-                '}';
+        return "Brand: " +
+                "id = " + id +
+                ", name = '" + name + '\'' +
+                ", founding year = " + foundingYear +
+                ", rating = " + rating;
     }
 
     @Override
