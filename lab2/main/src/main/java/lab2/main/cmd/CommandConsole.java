@@ -83,13 +83,14 @@ public class CommandConsole implements CommandLineRunner {
     }
 
     public void listBrandPhones(Scanner scanner){
-        String tmp = getNotEmpty(scanner,"Provide name of the brand:");
+        String tmp = getNotEmpty(scanner,"Provide name of the brand (or type quit to exit the process):");
+        if(tmp.equals("quit")) return;
         Optional<Brand> brand = brandService.findByName(tmp);
 
         if(brand.isPresent())
             phoneServ.findAllByBrand(brand.get()).forEach(System.out::println);
         else
-            System.out.println("No such brand present");
+            System.out.println("There is no such brand.");
     }
 
     public void addPhone(Scanner scanner){
@@ -126,7 +127,7 @@ public class CommandConsole implements CommandLineRunner {
                         .setModelId(modelId).setMemory(mem).setBrand(tmp.get()).build());
                 return;
             }
-            System.out.println("not found");
+            System.out.println("There is no such brand.");
         }
     }
 
