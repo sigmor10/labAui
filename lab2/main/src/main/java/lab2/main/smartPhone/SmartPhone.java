@@ -19,7 +19,7 @@ public class SmartPhone implements Comparable<SmartPhone>, Serializable {
     private String modelId;
     @Column(name = "memory")
     private int memory;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "brand_id")
     private Brand brand;
 
@@ -112,12 +112,12 @@ public class SmartPhone implements Comparable<SmartPhone>, Serializable {
 
     @Override
     public String toString() {
-        return "SmartPhone{" +
-                "id=" + id +
-                ", model='" + model + '\'' +
-                ", modelId=" + modelId +
-                ", memory=" + memory +
-                '}';
+        return "SmartPhone: " +
+                "id = " + id +
+                ", model = '" + model + '\'' +
+                ", modelId = " + modelId +
+                ", memory = " + memory +
+                ", brand = "+ brand.getName();
     }
 
     @Override

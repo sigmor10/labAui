@@ -70,36 +70,37 @@ public class CommandConsole implements CommandLineRunner {
         System.out.println("available phones:");
         phoneServ.findAll().forEach(System.out::println);
         System.out.println("provide id of the phone to delete:");
+
         try{
             UUID id = UUID.fromString(scanner.nextLine());
             phoneServ.delete(id);
             System.out.println("Deletion was successful!!!!");
-        }catch (Exception e){
+        }catch (NoSuchElementException e){
             System.out.println("There is no phone with that id.");
+        }catch (IllegalArgumentException e){
+            System.out.println("Id is in a wrong format.");
         }
     }
 
     public void listBrandPhones(Scanner scanner){
-        while (true){
-            String tmp = getNotEmpty(scanner,"Provide name of the brand:");
-            Optional<Brand> brand = brandService.findByName(tmp);
-            if(brand.isPresent()){
-                phoneServ.findAllByBrand(brand.get()).forEach(System.out::println);
-                break;
-            }
+        String tmp = getNotEmpty(scanner,"Provide name of the brand:");
+        Optional<Brand> brand = brandService.findByName(tmp);
+
+        if(brand.isPresent())
+            phoneServ.findAllByBrand(brand.get()).forEach(System.out::println);
+        else
             System.out.println("No such brand present");
-        }
     }
 
-    public void addPhone(Scanner input){
+    public void addPhone(Scanner scanner){
         int mem = 0;
-        String model = getNotEmpty(input,"Provide model name:");
-        String modelId = getNotEmpty(input, "Provide model id:");
+        String model = getNotEmpty(scanner,"Provide model name:");
+        String modelId = getNotEmpty(scanner, "Provide model id:");
 
         while(mem <= 0) {
             System.out.println("Provide memory size:");
             try{
-                mem = Integer.parseInt(input.nextLine());
+                mem = Integer.parseInt(scanner.nextLine());
             }catch (Exception e){
                 System.out.println("value must be a positive integer");
             }
@@ -110,7 +111,7 @@ public class CommandConsole implements CommandLineRunner {
             brandService.findAll().forEach(System.out::println);
             System.out.println("Choose brand:");
 
-            String brandName = input.nextLine();
+            String brandName = scanner.nextLine();
             Optional<Brand> tmp = brandService.findByName(brandName);
 
             if(tmp.isPresent()) {
