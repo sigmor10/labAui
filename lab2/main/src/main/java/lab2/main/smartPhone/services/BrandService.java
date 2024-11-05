@@ -1,7 +1,7 @@
-package lab2.main.service;
+package lab2.main.smartPhone.services;
 
-import lab2.main.brand.Brand;
-import lab2.main.repositories.BrandRepository;
+import lab2.main.smartPhone.entities.Brand;
+import lab2.main.smartPhone.repositories.BrandRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

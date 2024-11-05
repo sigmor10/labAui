@@ -1,11 +1,8 @@
 package lab2.main.initializer;
 
-import lab2.main.brand.Brand;
-import lab2.main.service.BrandService;
-import lab2.main.service.SmartPhoneService;
-import lab2.main.smartPhone.SmartPhone;
+import lab2.main.smartPhone.entities.*;
+import lab2.main.smartPhone.services.*;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -20,34 +17,36 @@ public class Initializer implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        Brand sam = new Brand.Builder().setName("Samsung").setRating(8.7).setYear(1999).build();
-        Brand apple = new Brand.Builder().setName("Apple").setRating(2.7).setYear(1997).build();
-        Brand xiaomi = new Brand.Builder().setName("Xiaomi").setRating(6.2).setYear(2012).build();
-        Brand lg = new Brand.Builder().setName("LG").setRating(5.3).setYear(1988).build();
+        Brand sam = Brand.builder().name("Samsung").rating(8.7).foundingYear(1999).build();
+        Brand apple = Brand.builder().name("Apple").rating(2.7).foundingYear(1997).build();
+        Brand xiaomi = Brand.builder().name("Xiaomi").rating(6.2).foundingYear(2012).build();
+        Brand lg = Brand.builder().name("LG").rating(5.3).foundingYear(1988).build();
+        Brand mot = Brand.builder().name("Motorola").rating(4.3).foundingYear(1992).build();
 
         brandService.create(sam);
         brandService.create(apple);
         brandService.create(lg);
         brandService.create(xiaomi);
+        brandService.create(mot);
 
-        phoneServ.create(new SmartPhone.Builder().setModel("Galaxy 10").setMemory(64).setModelId("1454").setBrand(sam).build());
-        phoneServ.create(new SmartPhone.Builder().setModel("Note 5").setMemory(128).setModelId("2518").setBrand(sam).build());
-        phoneServ.create(new SmartPhone.Builder().setModel("M4").setMemory(64).setModelId("6771").setBrand(sam).build());
-        phoneServ.create(new SmartPhone.Builder().setModel("Galaxy 23+").setMemory(256).setModelId("1840").setBrand(sam).build());
+        phoneServ.create(SmartPhone.builder().model("Galaxy 10").memory(64).modelId("1454").brand(sam).build());
+        phoneServ.create(SmartPhone.builder().model("Note 5").memory(128).modelId("2518").brand(sam).build());
+        phoneServ.create(SmartPhone.builder().model("M4").memory(64).modelId("6771").brand(sam).build());
+        phoneServ.create(SmartPhone.builder().model("Galaxy 23+").memory(256).modelId("1840").brand(sam).build());
 
-        phoneServ.create(new SmartPhone.Builder().setModel("Iphone 7").setMemory(32).setModelId("3325").setBrand(apple).build());
-        phoneServ.create(new SmartPhone.Builder().setModel("Iphone 11").setMemory(128).setModelId("8711").setBrand(apple).build());
-        phoneServ.create(new SmartPhone.Builder().setModel("Iphone 10").setMemory(64).setModelId("6549").setBrand(apple).build());
-        phoneServ.create(new SmartPhone.Builder().setModel("Iphone 13").setMemory(256).setModelId("7444").setBrand(apple).build());
+        phoneServ.create(SmartPhone.builder().model("Iphone 7").memory(32).modelId("3325").brand(apple).build());
+        phoneServ.create(SmartPhone.builder().model("Iphone 11").memory(128).modelId("8711").brand(apple).build());
+        phoneServ.create(SmartPhone.builder().model("Iphone 10").memory(64).modelId("6549").brand(apple).build());
+        phoneServ.create(SmartPhone.builder().model("Iphone 13").memory(256).modelId("7444").brand(apple).build());
 
-        phoneServ.create(new SmartPhone.Builder().setModel("V2").setMemory(64).setModelId("4771").setBrand(lg).build());
-        phoneServ.create(new SmartPhone.Builder().setModel("Q6+").setMemory(128).setModelId("157916").setBrand(lg).build());
-        phoneServ.create(new SmartPhone.Builder().setModel("G4").setMemory(128).setModelId("541579").setBrand(lg).build());
-        phoneServ.create(new SmartPhone.Builder().setModel("V30+").setMemory(512).setModelId("741283").setBrand(lg).build());
+        phoneServ.create(SmartPhone.builder().model("V2").memory(64).modelId("4771").brand(lg).build());
+        phoneServ.create(SmartPhone.builder().model("Q6+").memory(128).modelId("157916").brand(lg).build());
+        phoneServ.create(SmartPhone.builder().model("G4").memory(128).modelId("541579").brand(lg).build());
+        phoneServ.create(SmartPhone.builder().model("V30+").memory(512).modelId("741283").brand(lg).build());
 
-        phoneServ.create(new SmartPhone.Builder().setModel("Redmi 3").setMemory(64).setModelId("189478").setBrand(xiaomi).build());
-        phoneServ.create(new SmartPhone.Builder().setModel("Redmi 3").setMemory(128).setModelId("214484").setBrand(xiaomi).build());
-        phoneServ.create(new SmartPhone.Builder().setModel("Mi 2+").setMemory(32).setModelId("2517867").setBrand(xiaomi).build());
-        phoneServ.create(new SmartPhone.Builder().setModel("Redmi 6").setMemory(256).setModelId("179917").setBrand(xiaomi).build());
+        phoneServ.create(SmartPhone.builder().model("Redmi 3").memory(64).modelId("189478").brand(xiaomi).build());
+        phoneServ.create(SmartPhone.builder().model("Redmi 3").memory(128).modelId("214484").brand(xiaomi).build());
+        phoneServ.create(SmartPhone.builder().model("Mi 2+").memory(32).modelId("2517867").brand(xiaomi).build());
+        phoneServ.create(SmartPhone.builder().model("Redmi 6").memory(256).modelId("179917").brand(xiaomi).build());
     }
 }

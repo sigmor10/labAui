@@ -1,0 +1,61 @@
+### Żądania GET --------------------------------------------------------------------
+
+### Odczyt wszystkich smartfonów
+GET http://localhost:8080/api/smartphones
+Accept: application/json
+
+### Odczyt pojedynczego smartfona
+GET http://localhost:8080/api/smartphones/{phoneId}
+Accept: application/json
+
+### Odczyt wszystkich marek smartfonów
+GET http://localhost:8080/api/brands
+Accept: application/json
+
+### Odczyt pojedyńczej marki smartfonów
+GET http://localhost:8080/api/brands/{brandId}
+Accept: application/json
+
+### Odczyt smartfonów według marki
+GET http://localhost:8080/api/brands/{brandId}/smartphones
+Accept: application/json
+
+### Żądania POST -------------------------------------------------------------------
+
+### Dodanie nowego smartfona
+POST http://localhost:8080/api/brands/{brandId}/smartphones
+Content-Type: application/json
+
+{
+    "model": "test_model",
+    "modelId": "test_model_id",
+    "memory": 32
+}
+
+### Żądabnia PUT -------------------------------------------------------------------
+
+### Aktualizacja smartfona (wszystkie pola)
+PUT http://localhost:8080/api/smartphones/{id}
+Content-Type: application/json
+
+{
+    "model": "test_model2",
+    "modelId": "test_model_id2",
+    "memory": 64
+}
+
+### Aktualizacja smartfona (jedno pole)
+PUT http://localhost:8080/api/smartphones/{id}
+Content-Type: application/json
+
+{
+    "memory": 32
+}
+
+### Żądania DELETE -----------------------------------------------------------------
+
+### Usunięcie smarfona
+DELETE http://localhost:8080/api/smartphones/{phoneId}
+
+### Usunięcie marki
+DELETE http://localhost:8080/api/brands/{brandId}

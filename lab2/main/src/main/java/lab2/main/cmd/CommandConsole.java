@@ -1,14 +1,14 @@
 package lab2.main.cmd;
 
-import lab2.main.brand.Brand;
-import lab2.main.service.BrandService;
-import lab2.main.service.SmartPhoneService;
-import lab2.main.smartPhone.SmartPhone;
+import lab2.main.smartPhone.entities.*;
+import lab2.main.smartPhone.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.util.*;
+import java.util.Optional;
+import java.util.Scanner;
+import java.util.UUID;
 
 @Component
 public class CommandConsole implements CommandLineRunner {
@@ -21,21 +21,18 @@ public class CommandConsole implements CommandLineRunner {
         this.phoneServ = phoneServ;
     }
 
-
     @Override
     public void run(String... args) throws Exception {
         Scanner scanner = new Scanner(System.in);
         String command;
-        boolean running = true;
 
-        while(running){
+        while(true){
             printLegend();
             command = scanner.nextLine();
 
             switch (command){
                 case "quit":
-                    running  = false;
-                    break;
+                    System.exit(0);
                 case "list_all_brands":
                     brandService.findAll().forEach(System.out::println);
                     break;
@@ -73,10 +70,12 @@ public class CommandConsole implements CommandLineRunner {
 
         try{
             UUID id = UUID.fromString(scanner.nextLine());
-            phoneServ.delete(id);
-            System.out.println("Deletion was successful!!!!");
-        }catch (NoSuchElementException e){
-            System.out.println("There is no phone with that id.");
+            if(phoneServ.findById(id).isPresent()) {
+                phoneServ.delete(id);
+                System.out.println("Deletion was successful!!!!");
+            }
+            else
+                System.out.println("There is no such phone in the database.");
         }catch (IllegalArgumentException e){
             System.out.println("Id is in a wrong format.");
         }
@@ -85,12 +84,14 @@ public class CommandConsole implements CommandLineRunner {
     public void listBrandPhones(Scanner scanner){
         String tmp = getNotEmpty(scanner,"Provide name of the brand (or type quit to exit the process):");
         if(tmp.equals("quit")) return;
-        Optional<Brand> brand = brandService.findByName(tmp);
 
-        if(brand.isPresent())
-            phoneServ.findAllByBrand(brand.get()).forEach(System.out::println);
-        else
-            System.out.println("There is no such brand.");
+        brandService.findByName(tmp).ifPresentOrElse(
+                brand -> phoneServ.findAllByBrand(brand.getId()).ifPresentOrElse(
+                        phones -> phones.forEach(System.out::println),
+                        () -> System.out.println("This brand has no phones yet.")
+                ),
+                () -> System.out.println("There is no such brand.")
+        );
     }
 
     public void addPhone(Scanner scanner){
@@ -123,8 +124,8 @@ public class CommandConsole implements CommandLineRunner {
 
             Optional<Brand> tmp = brandService.findByName(brandName);
             if(tmp.isPresent()) {
-                phoneServ.create(new SmartPhone.Builder().setModel(model)
-                        .setModelId(modelId).setMemory(mem).setBrand(tmp.get()).build());
+                phoneServ.create(SmartPhone.builder().model(model)
+                        .modelId(modelId).memory(mem).brand(tmp.get()).build());
                 return;
             }
             System.out.println("There is no such brand.");

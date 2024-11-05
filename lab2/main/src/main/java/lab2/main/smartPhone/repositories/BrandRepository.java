@@ -1,6 +1,6 @@
-package lab2.main.repositories;
+package lab2.main.smartPhone.repositories;
 
-import lab2.main.brand.Brand;
+import lab2.main.smartPhone.entities.Brand;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

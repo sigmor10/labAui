@@ -1,8 +1,8 @@
-package lab2.main.service;
+package lab2.main.smartPhone.services;
 
-import lab2.main.brand.Brand;
-import lab2.main.repositories.SmartPhoneRepository;
-import lab2.main.smartPhone.SmartPhone;
+import lab2.main.smartPhone.repositories.BrandRepository;
+import lab2.main.smartPhone.repositories.SmartPhoneRepository;
+import lab2.main.smartPhone.entities.SmartPhone;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +13,12 @@ import java.util.UUID;
 @Service
 public class SmartPhoneService {
     private final SmartPhoneRepository repository;
+    private final BrandRepository brandRepository;
 
     @Autowired
-    public SmartPhoneService(SmartPhoneRepository repository) {
+    public SmartPhoneService(SmartPhoneRepository repository, BrandRepository brandRepository) {
         this.repository = repository;
+        this.brandRepository = brandRepository;
     }
 
     public List<SmartPhone> findAll(){
@@ -27,8 +29,8 @@ public class SmartPhoneService {
         return repository.findById(id);
     }
 
-    public List<SmartPhone> findAllByBrand(Brand brand){
-        return repository.findAllByBrand(brand);
+    public Optional<List<SmartPhone>> findAllByBrand(UUID id){
+        return brandRepository.findById(id).map(repository::findAllByBrand);
     }
 
     public void create(SmartPhone smartPhone){
