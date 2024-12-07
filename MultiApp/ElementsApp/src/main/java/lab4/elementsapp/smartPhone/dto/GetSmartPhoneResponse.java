@@ -13,21 +13,8 @@ import java.util.UUID;
 @AllArgsConstructor
 public class GetSmartPhoneResponse {
 
-    @Getter
-    @Setter
-    @Builder
-    @ToString
-    @EqualsAndHashCode
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class Brand {
-        private UUID id;
-        private String name;
-    }
-
     private UUID id;
     private String model;
     private String modelId;
     private int memory;
-    private Brand brand;
 }

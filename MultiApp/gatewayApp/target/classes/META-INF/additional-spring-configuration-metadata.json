@@ -1,0 +1,18 @@
+{
+  "properties": [
+    {
+      "name": "app.smartphone.url",
+      "type": "java.lang.String",
+      "description": "Description for app.smartphone.url."
+    },
+    {
+      "name": "app.brand.url",
+      "type": "java.lang.String",
+      "description": "Description for app.brand.url."
+    },
+    {
+      "name": "app.gateway.host",
+      "type": "java.lang.String",
+      "description": "Description for app.gateway.host."
+    }
+  ] }

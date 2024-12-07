@@ -53,6 +53,20 @@ public class BrandDefaultController implements BrandController {
     }
 
     @Override
+    public void putBrand(UUID id, PutPostBrandRequest request) {
+        service.findById(id).ifPresentOrElse(
+                brand -> {
+                    Brand tmp = requestToBrand.apply(request);
+                    tmp.setId(id);
+                    service.update(tmp);
+                },
+                () -> {
+                    throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+                }
+        );
+    }
+
+    @Override
     public void deleteBrand(UUID id) {
         service.findById(id)
                 .ifPresentOrElse(

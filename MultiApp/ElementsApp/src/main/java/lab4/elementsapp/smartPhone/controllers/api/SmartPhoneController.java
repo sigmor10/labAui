@@ -2,8 +2,7 @@ package lab4.elementsapp.smartPhone.controllers.api;
 
 import lab4.elementsapp.smartPhone.dto.GetSmartPhoneResponse;
 import lab4.elementsapp.smartPhone.dto.GetSmartphonesResponse;
-import lab4.elementsapp.smartPhone.dto.PostSmartPhoneRequest;
-import lab4.elementsapp.smartPhone.dto.PutSmartPhoneRequest;
+import lab4.elementsapp.smartPhone.dto.PostPutSmartPhoneRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,7 +38,7 @@ public interface SmartPhoneController {
             @PathVariable("brandId")
             UUID brandId,
             @RequestBody
-            PostSmartPhoneRequest request
+            PostPutSmartPhoneRequest request
     );
 
     @PutMapping("api/smartphones/{id}")
@@ -49,7 +48,7 @@ public interface SmartPhoneController {
             @PathVariable("id")
             UUID id,
             @RequestBody
-            PutSmartPhoneRequest request
+            PostPutSmartPhoneRequest request
     );
 
     @DeleteMapping("api/smartphones/{id}")

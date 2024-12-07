@@ -1,0 +1,43 @@
+<article>
+  <header><h2>Add Smartphone</h2></header>
+  <form #form="ngForm" (ngSubmit)="onSubmit()">
+    <div>
+      <div>
+        <div>
+          <label for="model">Model name:</label>
+          <input id="model" name="model" [(ngModel)]="phoneForm.model">
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div>
+        <div>
+          <label for="modelId">Model Id:</label>
+          <input id="modelId" name="modelId" [(ngModel)]="phoneForm.modelId">
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div>
+        <div>
+          <label for="memory">Memory size [GB]:</label>
+          <input id="memory" name="memory" [(ngModel)]="phoneForm.memory">
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div>
+        <button type="submit">Add</button>
+      </div>
+      <div>
+        <button type="button" (click)="form.resetForm(ogForm)">Reset</button>
+      </div>
+      <div>
+        <button type="button" [routerLink]="['/brands', brandId]">Cancel</button>
+      </div>
+    </div>
+  </form>
+</article>

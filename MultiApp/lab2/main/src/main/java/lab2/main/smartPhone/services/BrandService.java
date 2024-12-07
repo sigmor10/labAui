@@ -38,6 +38,10 @@ public class BrandService {
         eventRepo.create(brand.getId());
     }
 
+    public void update(Brand brand){
+        repository.save(brand);
+    }
+
     public void delete(UUID id){
         repository.deleteById(id);
         eventRepo.delete(id);

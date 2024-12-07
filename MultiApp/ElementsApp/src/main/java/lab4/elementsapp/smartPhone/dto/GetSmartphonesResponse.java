@@ -24,8 +24,6 @@ public class GetSmartphonesResponse {
     public static class SmartPhone {
         private UUID id;
         private String model;
-        private String modelId;
-        private int memory;
         private String brand;
     }
 

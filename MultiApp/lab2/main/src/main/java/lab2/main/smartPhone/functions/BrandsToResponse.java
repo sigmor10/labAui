@@ -16,8 +16,6 @@ public class BrandsToResponse implements Function<List<Brand>, GetBrandsResponse
                 .brands(brands.stream().map( brand -> GetBrandsResponse.Brand.builder()
                                 .id(brand.getId())
                                 .name(brand.getName())
-                                .foundingYear(brand.getFoundingYear())
-                                .rating(brand.getRating())
                                 .build())
                         .toList())
                 .build();

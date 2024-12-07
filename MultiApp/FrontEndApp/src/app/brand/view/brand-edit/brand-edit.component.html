@@ -1,0 +1,43 @@
+<article *ngIf="brandForm">
+  <header><h2>Edit Brand</h2></header>
+  <form #form="ngForm" (ngSubmit)="onSubmit()">
+    <div>
+      <div>
+        <div>
+          <label for="name">Name</label>
+          <input id="name" name="name" [(ngModel)]="brandForm.name">
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div>
+        <div>
+          <label for="rating">Rating</label>
+          <input id="rating" name="rating" [(ngModel)]="brandForm.rating">
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div>
+        <div>
+          <label for="foundingYear">Founding year</label>
+          <input id="foundingYear" name="foundingYear" [(ngModel)]="brandForm.foundingYear">
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div>
+        <button type="submit">Update</button>
+      </div>
+      <div>
+        <button type="button" (click)="form.resetForm(ogForm)">Reset</button>
+      </div>
+      <div>
+        <button type="button" (click)="onCancel()">Cancel</button>
+      </div>
+    </div>
+  </form>
+</article>

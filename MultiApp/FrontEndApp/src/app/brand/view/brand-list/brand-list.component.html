@@ -1,0 +1,28 @@
+<article>
+  <header><h3>Brands</h3></header>
+  <table *ngIf="brands">
+    <thead>
+      <th>Id</th>
+      <th>Name</th>
+      <th>View</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let brand of brands.brands">
+        <td>{{brand.id}}</td>
+        <td>{{brand.name}}</td>
+        <td>
+          <button [routerLink]="['/brands',brand.id]">View Details</button>
+        </td>
+        <td>
+          <button [routerLink]="['/brands',brand.id, 'edit']">Edit</button>
+        </td>
+        <td>
+          <button (click)="onDelete(brand)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button [routerLink]="['/brands/add']">Add new brand</button>
+</article>

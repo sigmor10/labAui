@@ -1,0 +1,52 @@
+<article>
+  <header><h3>Brand Details</h3></header>
+  <table *ngIf="brand">
+    <thead>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Rating</th>
+    <th>Founding year</th>
+    <th>Edit</th>
+    <th>Delete</th>
+    </thead>
+    <tbody>
+    <tr>
+      <td>{{brand.id}}</td>
+      <td>{{brand.name}}</td>
+      <td>{{brand.rating}}</td>
+      <td>{{brand.foundingYear}}</td>
+      <td>
+        <button [routerLink]="['/brands',brand.id, 'edit']">Edit</button>
+      </td>
+      <td>
+        <button (click)="onDelete(brand)">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <table *ngIf="phones">
+    <thead>
+    <th>Id</th>
+    <th>Model</th>
+    <th>View</th>
+    <th>Edit</th>
+    <th>Delete</th>
+    </thead>
+    <tbody>
+    <tr *ngFor="let phone of phones.phones ">
+      <td>{{phone.id}}</td>
+      <td>{{phone.model}}</td>
+      <td>
+        <button [routerLink]="['smartphones',phone.id]">View Details</button>
+      </td>
+      <td>
+        <button [routerLink]="['smartphones',phone.id, 'edit']">Edit</button>
+      </td>
+      <td>
+        <button (click)="onPhoneDelete(phone)">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <button [routerLink]="['smartphones', 'add']">Add new phone</button>
+</article>

@@ -16,8 +16,6 @@ public class SmartPhonesToResponse implements Function<List<SmartPhone>, GetSmar
                 .phones(smartPhones.stream().map(phone -> GetSmartphonesResponse.SmartPhone.builder()
                                 .model(phone.getModel())
                                 .id(phone.getId())
-                                .memory(phone.getMemory())
-                                .modelId(phone.getModelId())
                                 .brand(String.valueOf(phone.getBrand().getId()))
                                 .build())
                         .toList())

@@ -16,9 +16,6 @@ public class SmartPhoneToResponse implements Function<SmartPhone, GetSmartPhoneR
                 .model(phone.getModel())
                 .modelId(phone.getModelId())
                 .memory(phone.getMemory())
-                .brand(GetSmartPhoneResponse.Brand.builder()
-                        .name(String.valueOf(phone.getBrand().getId()))
-                        .id(phone.getBrand().getId())
-                        .build()).build();
+                .build();
     }
 }

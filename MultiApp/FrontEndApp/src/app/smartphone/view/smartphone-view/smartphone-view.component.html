@@ -1,0 +1,28 @@
+<article>
+  <table *ngIf="phone">
+    <thead>
+      <th>Id</th>
+      <th>Model</th>
+      <th>Model Id</th>
+      <th>Memory</th>
+      <th>Brand</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{phone.id}}</td>
+        <td>{{phone.model}}</td>
+        <td>{{phone.modelId}}</td>
+        <td>{{phone.memory}}</td>
+        <td>{{brand?.id!}}</td>
+        <td>
+          <button [routerLink]="['edit']">Edit</button>
+        </td>
+        <td>
+          <button (click)="onDelete(phone)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</article>

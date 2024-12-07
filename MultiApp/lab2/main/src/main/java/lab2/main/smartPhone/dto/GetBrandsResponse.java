@@ -24,8 +24,6 @@ public class GetBrandsResponse {
     public static class Brand {
         private UUID id;
         private String name;
-        private int foundingYear;
-        private double rating;
     }
 
     private List<Brand> brands;

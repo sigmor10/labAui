@@ -2,8 +2,6 @@ package lab4.elementsapp.smartPhone.dto;
 
 import lombok.*;
 
-import java.util.UUID;
-
 @Getter
 @Setter
 @Builder
@@ -11,8 +9,8 @@ import java.util.UUID;
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-public class PostSmartPhoneRequest {
+public class PostPutSmartPhoneRequest {
     private String model;
     private String modelId;
-    private int memory;
+    private Integer memory;
 }

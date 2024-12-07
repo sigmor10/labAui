@@ -3,8 +3,7 @@ package lab4.elementsapp.smartPhone.controllers.impl;
 import lab4.elementsapp.smartPhone.controllers.api.SmartPhoneController;
 import lab4.elementsapp.smartPhone.dto.GetSmartPhoneResponse;
 import lab4.elementsapp.smartPhone.dto.GetSmartphonesResponse;
-import lab4.elementsapp.smartPhone.dto.PostSmartPhoneRequest;
-import lab4.elementsapp.smartPhone.dto.PutSmartPhoneRequest;
+import lab4.elementsapp.smartPhone.dto.PostPutSmartPhoneRequest;
 import lab4.elementsapp.smartPhone.entities.SmartPhone;
 import lab4.elementsapp.smartPhone.functions.RequestToSmartPhone;
 import lab4.elementsapp.smartPhone.functions.SmartPhoneToResponse;
@@ -63,7 +62,7 @@ public class SmartPhoneDefaultController implements SmartPhoneController {
     }
 
     @Override
-    public void postSmartPhone(UUID brandId,PostSmartPhoneRequest request) {
+    public void postSmartPhone(UUID brandId,PostPutSmartPhoneRequest request) {
         brandService.findById(brandId).ifPresentOrElse(
                 brand ->{
                   SmartPhone tmp = requestToSmartPhone.apply(request);
@@ -77,7 +76,7 @@ public class SmartPhoneDefaultController implements SmartPhoneController {
     }
 
     @Override
-    public void putSmartPhone(UUID id, PutSmartPhoneRequest request) {
+    public void putSmartPhone(UUID id, PostPutSmartPhoneRequest request) {
         service.findById(id).ifPresentOrElse(
                 phone -> service.update(updateSmartPhoneWithRequest.apply(phone, request)),
                 () -> {

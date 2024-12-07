@@ -30,6 +30,15 @@ public interface BrandController {
             PutPostBrandRequest request
     );
 
+    @PutMapping("api/brands/{id}")
+    @ResponseStatus(HttpStatus.CREATED)
+    void putBrand(
+            @PathVariable
+            UUID id,
+            @RequestBody
+            PutPostBrandRequest request
+    );
+
     @DeleteMapping("api/brands/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void deleteBrand(
