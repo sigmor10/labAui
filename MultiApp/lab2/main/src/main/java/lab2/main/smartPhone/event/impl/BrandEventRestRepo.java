@@ -5,8 +5,10 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
+import java.net.ConnectException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -29,7 +31,11 @@ public class BrandEventRestRepo implements BrandEventRepo {
         requestBody.put("id", id);
 
         HttpEntity<Map<String, UUID>> request = new HttpEntity<>(requestBody, headers);
-        restTemplate.postForEntity("/api/brands", request, Void.class);
+        try {
+            restTemplate.postForEntity("/api/brands", request, Void.class);
+        } catch (RestClientException e) {
+            System.out.println("Couldn't connect to elements app.");
+        }
     }
 
     @Override

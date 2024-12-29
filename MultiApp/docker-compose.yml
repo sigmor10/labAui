@@ -1,0 +1,65 @@
+version: '3'
+
+services:
+  brand-db:
+    image: postgres:16.1
+    restart: always
+    environment:
+      POSTGRES_USER: "brand_user"
+      POSTGRES_PASSWORD: "brand_password"
+      POSTGRES_DB: "brands-db"
+    volumes:
+      - brand-db-data:/var/lib/postgresql/data
+
+  smartphone-db:
+    image: postgres:16.1
+    restart: always
+    environment:
+      POSTGRES_USER: "phone_user"
+      POSTGRES_PASSWORD: "phone_password"
+      POSTGRES_DB: "smartphones-db"
+    volumes:
+      - smartphone-db-data:/var/lib/postgresql/data
+
+  elements:
+    image: elements-app
+    restart: always
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://smartphone-db:5432/smartphones-db"
+      SPRING_DATASOURCE_DRIVERCLASSNAME: "org.postgresql.Driver"
+      SPRING_DATASOURCE_USERNAME: "phone_user"
+      SPRING_DATASOURCE_PASSWORD: "phone_password"
+      SPRING_JPA_DATABASE_PLATFORM: "org.hibernate.dialect.PostgreSQLDialect"
+      SPRING_JPA_HIBERNATE_DDL_AUTO: "create-drop"
+
+  categories:
+    image: category-app
+    restart: always
+    environment:
+      APP_SMARTPHONE_URL: "http://elements:8080"
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://brand-db:5432/brands-db"
+      SPRING_DATASOURCE_DRIVERCLASSNAME: "org.postgresql.Driver"
+      SPRING_DATASOURCE_USERNAME: "brand_user"
+      SPRING_DATASOURCE_PASSWORD: "brand_password"
+      SPRING_JPA_DATABASE_PLATFORM: "org.hibernate.dialect.PostgreSQLDialect"
+      SPRING_JPA_HIBERNATE_DDL_AUTO: "create-drop"
+
+  gateway:
+    image: gateway-app
+    restart: always
+    environment:
+      APP_GATEWAY_HOST: "gateway:8080"
+      APP_SMARTPHONE_URL: "http://elements:8080"
+      APP_BRAND_URL: "http://categories:8080"
+
+  front-end-app:
+    image: front-end-app
+    restart: always
+    environment:
+      API_URL: http://gateway:8080/api
+    ports:
+      - "8087:80"
+
+volumes:
+  brand-db-data:
+  smartphone-db-data:
