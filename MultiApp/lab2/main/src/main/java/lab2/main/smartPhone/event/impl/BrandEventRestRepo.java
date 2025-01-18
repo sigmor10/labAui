@@ -1,6 +1,7 @@
 package lab2.main.smartPhone.event.impl;
 
 import lab2.main.smartPhone.event.api.BrandEventRepo;
+import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -15,10 +16,12 @@ import java.util.UUID;
 @Repository
 public class BrandEventRestRepo implements BrandEventRepo {
     private  final RestTemplate restTemplate;
+    private final LoadBalancerClient lb;
 
 
-    public BrandEventRestRepo(RestTemplate template) {
+    public BrandEventRestRepo(RestTemplate template, LoadBalancerClient lb) {
         this.restTemplate = template;
+        this.lb = lb;
     }
 
     @Override
@@ -31,7 +34,8 @@ public class BrandEventRestRepo implements BrandEventRepo {
 
         HttpEntity<Map<String, UUID>> request = new HttpEntity<>(requestBody, headers);
         try {
-            restTemplate.postForEntity("/api/brands", request, Void.class);
+            String uri = lb.choose("ELEMENTS-APP").getUri().toString();
+            restTemplate.postForEntity(uri + "/api/brands", request, Void.class);
         } catch (RestClientException e) {
             System.out.println("Couldn't connect to elements app.");
         }
@@ -39,6 +43,7 @@ public class BrandEventRestRepo implements BrandEventRepo {
 
     @Override
     public void delete(UUID id) {
-        restTemplate.delete("/api/brands/{id}", id);
+        String uri = lb.choose("ELEMENTS-APP").getUri().toString();
+        restTemplate.delete(uri + "/api/brands/{id}", id);
     }
 }

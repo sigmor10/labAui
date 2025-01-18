@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  eureka:
+  app-eureka:
     image: eureka-app
     restart: always
     ports:
@@ -31,7 +31,7 @@ services:
     image: elements-app
     restart: always
     environment:
-      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://eureka:8080/eureka"
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://app-eureka:8080/eureka"
       EUREKA_INSTANCE_INSTANCE_ID: "1"
       SPRING_DATASOURCE_URL: "jdbc:postgresql://smartphone-db:5432/smartphones-db"
       SPRING_DATASOURCE_DRIVERCLASSNAME: "org.postgresql.Driver"
@@ -43,7 +43,7 @@ services:
     image: elements-app
     restart: always
     environment:
-      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://eureka:8080/eureka"
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://app-eureka:8080/eureka"
       EUREKA_INSTANCE_INSTANCE_ID: "2"
       SPRING_DATASOURCE_URL: "jdbc:postgresql://smartphone-db:5432/smartphones-db"
       SPRING_DATASOURCE_DRIVERCLASSNAME: "org.postgresql.Driver"
@@ -55,7 +55,7 @@ services:
     image: category-app
     restart: always
     environment:
-      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://eureka:8080/eureka"
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://app-eureka:8080/eureka"
       SPRING_DATASOURCE_URL: "jdbc:postgresql://brand-db:5432/brands-db"
       SPRING_DATASOURCE_DRIVERCLASSNAME: "org.postgresql.Driver"
       SPRING_DATASOURCE_USERNAME: "brand_user"
@@ -66,7 +66,7 @@ services:
     image: gateway-app
     restart: always
     environment:
-      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://eureka:8080/eureka"
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://app-eureka:8080/eureka"
       APP_GATEWAY_HOST: "gateway:8080"
 
   front-end-app:

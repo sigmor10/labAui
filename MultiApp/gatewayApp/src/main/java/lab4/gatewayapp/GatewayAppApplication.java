@@ -35,7 +35,7 @@ public class GatewayAppApplication {
                                 "/api/brands",
                                 "/api/brands/{uuid}"
                         )
-                        .uri("lb://categories"))
+                        .uri("lb://CATEGORY-APP"))
                 .route("smartphones", r -> r
                         .host(hostUrl)
                         .and()
@@ -44,7 +44,7 @@ public class GatewayAppApplication {
                                 "/api/smartphones/{uuid}",
                                 "/api/brands/{brandId}/smartphones"
                         )
-                        .uri("lb://elements"))
+                        .uri("lb://ELEMENTS-APP"))
                 .build();
     }
 

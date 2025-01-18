@@ -1,6 +1,7 @@
 package lab2.main.initializer;
 
 import lab2.main.smartPhone.entities.*;
+import lab2.main.smartPhone.repositories.BrandRepository;
 import lab2.main.smartPhone.services.*;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;
@@ -9,15 +10,15 @@ import java.util.UUID;
 
 @Component
 public class Initializer implements InitializingBean {
-    private final BrandService brandService;
+    private final BrandRepository brandRepo;
 
-    public Initializer(BrandService brandService) {
-        this.brandService = brandService;
+    public Initializer(BrandRepository brandRepo) {
+        this.brandRepo = brandRepo;
     }
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        if(brandService.findAll().isEmpty()) {
+        if(brandRepo.findAll().isEmpty()) {
             Brand sam = Brand.builder()
                     .id(UUID.fromString("b4daf574-6c5d-4976-a2e7-35653773fedb"))
                     .name("Samsung").rating(8.7).foundingYear(1999).build();
@@ -34,11 +35,11 @@ public class Initializer implements InitializingBean {
                     .id(UUID.fromString("c0c40930-480e-4068-9e5a-f5747de327e7"))
                     .name("Motorola").rating(4.3).foundingYear(1992).build();
 
-            brandService.create(sam);
-            brandService.create(apple);
-            brandService.create(lg);
-            brandService.create(xiaomi);
-            brandService.create(mot);
+            brandRepo.save(sam);
+            brandRepo.save(apple);
+            brandRepo.save(lg);
+            brandRepo.save(xiaomi);
+            brandRepo.save(mot);
         }
     }
 }
