@@ -1,5 +1,5 @@
 #!/bin/bash
 
-ng build --configuration production
+npx ng build --configuration production
 
 docker build -t front-end-app .

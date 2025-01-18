@@ -8,6 +8,14 @@ cd gatewayApp || exit
 ./build.sh
 cd ..
 
+cd EurekaApp || exit
+./build.sh
+cd ..
+
+cd FrontEndApp || exit
+./build.sh
+cd ..
+
 cd lab2/main || exit
 ./build.sh
 cd ..
