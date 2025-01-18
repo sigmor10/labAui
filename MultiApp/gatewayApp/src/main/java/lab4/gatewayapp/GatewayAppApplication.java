@@ -3,6 +3,7 @@ package lab4.gatewayapp;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
@@ -14,6 +15,7 @@ import java.util.Arrays;
 import java.util.Collections;
 
 @SpringBootApplication
+@EnableDiscoveryClient
 public class GatewayAppApplication {
 
     public static void main(String[] args) {
@@ -23,9 +25,7 @@ public class GatewayAppApplication {
     @Bean
     public RouteLocator routeLocator(
             RouteLocatorBuilder builder,
-            @Value("${app.gateway.host}") String hostUrl,
-            @Value("${app.brand.url}") String brandUrl,
-            @Value("${app.smartphone.url}") String phoneUrl
+            @Value("${app.gateway.host}") String hostUrl
     ) {
         return builder.routes()
                 .route("brands", r -> r
@@ -35,7 +35,7 @@ public class GatewayAppApplication {
                                 "/api/brands",
                                 "/api/brands/{uuid}"
                         )
-                        .uri(brandUrl))
+                        .uri("lb://categories"))
                 .route("smartphones", r -> r
                         .host(hostUrl)
                         .and()
@@ -44,7 +44,7 @@ public class GatewayAppApplication {
                                 "/api/smartphones/{uuid}",
                                 "/api/brands/{brandId}/smartphones"
                         )
-                        .uri(phoneUrl))
+                        .uri("lb://elements"))
                 .build();
     }
 

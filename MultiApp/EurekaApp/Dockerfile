@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM eclipse-temurin:17.0.6_10-jre
 LABEL authors="sigmo"
 
 

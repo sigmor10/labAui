@@ -1,6 +1,12 @@
 version: '3'
 
 services:
+  eureka:
+    image: eureka-app
+    restart: always
+    ports:
+      - "8090:8080"
+
   brand-db:
     image: postgres:16.1
     restart: always
@@ -21,36 +27,47 @@ services:
     volumes:
       - smartphone-db-data:/var/lib/postgresql/data
 
-  elements:
+  elements-1:
     image: elements-app
     restart: always
     environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://eureka:8080/eureka"
+      EUREKA_INSTANCE_INSTANCE_ID: "1"
       SPRING_DATASOURCE_URL: "jdbc:postgresql://smartphone-db:5432/smartphones-db"
       SPRING_DATASOURCE_DRIVERCLASSNAME: "org.postgresql.Driver"
       SPRING_DATASOURCE_USERNAME: "phone_user"
       SPRING_DATASOURCE_PASSWORD: "phone_password"
       SPRING_JPA_DATABASE_PLATFORM: "org.hibernate.dialect.PostgreSQLDialect"
-      SPRING_JPA_HIBERNATE_DDL_AUTO: "create-drop"
+
+  elements-2:
+    image: elements-app
+    restart: always
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://eureka:8080/eureka"
+      EUREKA_INSTANCE_INSTANCE_ID: "2"
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://smartphone-db:5432/smartphones-db"
+      SPRING_DATASOURCE_DRIVERCLASSNAME: "org.postgresql.Driver"
+      SPRING_DATASOURCE_USERNAME: "phone_user"
+      SPRING_DATASOURCE_PASSWORD: "phone_password"
+      SPRING_JPA_DATABASE_PLATFORM: "org.hibernate.dialect.PostgreSQLDialect"
 
   categories:
     image: category-app
     restart: always
     environment:
-      APP_SMARTPHONE_URL: "http://elements:8080"
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://eureka:8080/eureka"
       SPRING_DATASOURCE_URL: "jdbc:postgresql://brand-db:5432/brands-db"
       SPRING_DATASOURCE_DRIVERCLASSNAME: "org.postgresql.Driver"
       SPRING_DATASOURCE_USERNAME: "brand_user"
       SPRING_DATASOURCE_PASSWORD: "brand_password"
       SPRING_JPA_DATABASE_PLATFORM: "org.hibernate.dialect.PostgreSQLDialect"
-      SPRING_JPA_HIBERNATE_DDL_AUTO: "create-drop"
 
   gateway:
     image: gateway-app
     restart: always
     environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://eureka:8080/eureka"
       APP_GATEWAY_HOST: "gateway:8080"
-      APP_SMARTPHONE_URL: "http://elements:8080"
-      APP_BRAND_URL: "http://categories:8080"
 
   front-end-app:
     image: front-end-app
