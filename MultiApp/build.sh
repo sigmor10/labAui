@@ -12,6 +12,10 @@ cd EurekaApp || exit
 ./build.sh
 cd ..
 
+cd ConfigApp || exit
+./build.sh
+cd ..
+
 cd FrontEndApp || exit
 ./build.sh
 cd ..

@@ -1,6 +1,15 @@
 version: '3'
 
 services:
+  config:
+    image: config-app
+    restart: always
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://app-eureka:8080/eureka"
+    volumes:
+      - "C:/Users/sigmo/IdeaProjects/labAui/MultiApp/configuration:/var/config-app/configuration"
+
+
   app-eureka:
     image: eureka-app
     restart: always
@@ -31,42 +40,27 @@ services:
     image: elements-app
     restart: always
     environment:
-      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://app-eureka:8080/eureka"
+      SPRING_CONFIG_IMPORT: "configserver:http://CONFIG:8080"
       EUREKA_INSTANCE_INSTANCE_ID: "1"
-      SPRING_DATASOURCE_URL: "jdbc:postgresql://smartphone-db:5432/smartphones-db"
-      SPRING_DATASOURCE_DRIVERCLASSNAME: "org.postgresql.Driver"
-      SPRING_DATASOURCE_USERNAME: "phone_user"
-      SPRING_DATASOURCE_PASSWORD: "phone_password"
-      SPRING_JPA_DATABASE_PLATFORM: "org.hibernate.dialect.PostgreSQLDialect"
 
   elements-2:
     image: elements-app
     restart: always
     environment:
-      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://app-eureka:8080/eureka"
+      SPRING_CONFIG_IMPORT: "configserver:http://CONFIG:8080"
       EUREKA_INSTANCE_INSTANCE_ID: "2"
-      SPRING_DATASOURCE_URL: "jdbc:postgresql://smartphone-db:5432/smartphones-db"
-      SPRING_DATASOURCE_DRIVERCLASSNAME: "org.postgresql.Driver"
-      SPRING_DATASOURCE_USERNAME: "phone_user"
-      SPRING_DATASOURCE_PASSWORD: "phone_password"
-      SPRING_JPA_DATABASE_PLATFORM: "org.hibernate.dialect.PostgreSQLDialect"
 
   categories:
     image: category-app
     restart: always
     environment:
-      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://app-eureka:8080/eureka"
-      SPRING_DATASOURCE_URL: "jdbc:postgresql://brand-db:5432/brands-db"
-      SPRING_DATASOURCE_DRIVERCLASSNAME: "org.postgresql.Driver"
-      SPRING_DATASOURCE_USERNAME: "brand_user"
-      SPRING_DATASOURCE_PASSWORD: "brand_password"
-      SPRING_JPA_DATABASE_PLATFORM: "org.hibernate.dialect.PostgreSQLDialect"
+      SPRING_CONFIG_IMPORT: "configserver:http://CONFIG:8080"
 
   gateway:
     image: gateway-app
     restart: always
     environment:
-      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://app-eureka:8080/eureka"
+      SPRING_CONFIG_IMPORT: "configserver:http://CONFIG:8080"
       APP_GATEWAY_HOST: "gateway:8080"
 
   front-end-app:
