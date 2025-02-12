@@ -45,3 +45,9 @@
     <td>Discovery, Configuration</td>
   </tr>
 </table>
+
+<h2>Opis Gałęzi: Master</h2>
+
+
+<h2>Autor</h2>
+Jakub Kinder (sigmor10)
