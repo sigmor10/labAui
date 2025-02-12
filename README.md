@@ -7,7 +7,7 @@
 <table>
   <tr>
     <td>Gałąź</td>
-    <td>Opis</td>
+    <td>Najważniejsze zmiany</td>
   </tr>
   
   <tr>
@@ -22,26 +22,26 @@
   
   <tr>
     <td>lab3</td>
-    <td>Opis</td>
+    <td>REST API</td>
   </tr>
   
   <tr>
     <td>lab4</td>
-    <td>Opis</td>
+    <td>Architektura mikrousługowa</td>
   </tr>
   
   <tr>
     <td>lab5</td>
-    <td>Spring framework</td>
+    <td>Angular FrontEndk</td>
   </tr>
   
   <tr>
     <td>lab6</td>
-    <td>Opis</td>
+    <td>Docker</td>
   </tr>
   
   <tr>
     <td>lab7</td>
-    <td>Opis</td>
+    <td>Discovery, Configuration</td>
   </tr>
 </table>
