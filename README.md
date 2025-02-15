@@ -47,22 +47,28 @@
 </table>
 
 <h2>Opis Gałęzi: Master</h2>
-<p>W tej gałęzi została zaimplementowana aplikacja Java SE, która spełnia następujące warunki:</p>
+<p>W tej gałęzi aplikacja została przeniesiona na Spring Framework, najważniejsze zmiany:</p>
 
-- Zaimplementowano klasy kategorii i elementów, które są w relacji 1:n
-- Zaimplementowano klasę DTO dla klasy elementów.
-- Obiekty są tworzone tylko z wykorzystaniem builder'a.
+- Zaimplementowane w poprzedniej gałęzi funkcjonalności zostały w większości usunięte.
+- Dołączenie do projektu JPA i bazy danych H2.
+- Uprzednio utworzone klasy zmieniono na klasy encyjne.
+- Dodano repozytoria i klasy usług.
+- Wprowadzanie danych na starcie aplikacji jest zrobione poprzez klasę Initializer.
+- Dodano komunikację z użytkownikiem poprzez komendy w konsoli.
 
-<p>Zaimplementowane funkcjonalności:</p>
+<p>Obecne funkcjonalności:</p>
 
-- Kolekcja kategorii jest zaludniana przy starcie aplikacji.
-- Każda kategoria ma mieć po kilka elementów po starcie aplikacji.
-- Używając pojedyńczego pipeline'a Stream API tworzony jest Set z elementami wszystkich kategorii.
-- Używając pojedyńczego pipeline'a Stream API przefiltrowany został poprzedni wynik według wybranego kryterium i posortować wyniki według innego kryterium.
-- Używając pojedyńczego pipeline'a Stream API przetransformowane są elementy utworzonego Set'u w listę obiektów DTO.
-- Używając mechanizmu serializacji kolekcja kategorii jest zapisywana w serialization.bin, później jest ona odczytywana
-i wypisywana.
-- Używając współbieżnych pipeline'ów Stream API elementy każdej kategorii są wypisywane co 0.2 w osobnych wątkach.
+- Zapis kategorii i elementów w bazie danych H2.
+- Klasa Initializer wprowadza dane na starcie aplikacji.
+- Na elementach kategorii można wykonywać operacje CRUD, na kategoriach nie można przeprowadzić operacji update.
+- Komunikacja aplikacji z użytkownikiem poprzez prosty interfejs konsolowy i jego komendy.
+- Obecnie można:
+
+  - Wyświetlać listę kategorii.
+  - Wyświetlić listę elementów ze wszystkich kategorii.
+  - Wyświetlić listę elementów wybranej kategorii.
+  - Dodać / usunąć kategorie.
+  - Wykonać operacje CRUD na elementach
 
 <h2>Autor</h2>
 Jakub Kinder (sigmor10)
