@@ -47,22 +47,19 @@
 </table>
 
 <h2>Opis Gałęzi: Master</h2>
-<p>W tej gałęzi została zaimplementowana aplikacja Java SE, która spełnia następujące warunki:</p>
+<p>W tej gałęzi zostały zaimplementowane kontrolery wykorzystujące REST API, oto najważniejsze zmiany:</p>
 
-- Zaimplementowano klasy kategorii i elementów, które są w relacji 1:n
-- Zaimplementowano klasę DTO dla klasy elementów.
-- Obiekty są tworzone tylko z wykorzystaniem builder'a.
+- Dodano plik request.http zawierający żądania http do testowania REST API.
+- Dodano klasy DTO dla obu klas encyjnych.
+- Dodano klasy funkcyjne w celu transformacji klas encyjnych na DTO i odwrotnie.
 
-<p>Zaimplementowane funkcjonalności:</p>
+<p>Nowe funkcjonalności w tej gałęzi:</p>
 
-- Kolekcja kategorii jest zaludniana przy starcie aplikacji.
-- Każda kategoria ma mieć po kilka elementów po starcie aplikacji.
-- Używając pojedyńczego pipeline'a Stream API tworzony jest Set z elementami wszystkich kategorii.
-- Używając pojedyńczego pipeline'a Stream API przefiltrowany został poprzedni wynik według wybranego kryterium i posortować wyniki według innego kryterium.
-- Używając pojedyńczego pipeline'a Stream API przetransformowane są elementy utworzonego Set'u w listę obiektów DTO.
-- Używając mechanizmu serializacji kolekcja kategorii jest zapisywana w serialization.bin, później jest ona odczytywana
-i wypisywana.
-- Używając współbieżnych pipeline'ów Stream API elementy każdej kategorii są wypisywane co 0.2 w osobnych wątkach.
+- Komunikacja z aplikacją poprzez REST API.
+- Poprawne odpowiedzi w razie braku żądanych elementów / kategorii.
+- Transformacja przychodzących obiektów z klas DTO na klasy encyjne.
+- Transformacja klas encyjnych na DTO w celu ich wysłania w odpowiedzi.
+- Poprawne rozróżnianie kategorii z pustą listą elementów a brakiem kategorii i odpowiednia odpowiedź w obu przypadkach w przypadku żądań http o listę elementów kategorii.
 
 <h2>Autor</h2>
 Jakub Kinder (sigmor10)
