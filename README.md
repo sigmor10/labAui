@@ -46,7 +46,7 @@
   </tr>
 </table>
 
-<h2>Opis Gałęzi: Master</h2>
+<h2>Opis Gałęzi: lab3</h2>
 <p>W tej gałęzi zostały zaimplementowane kontrolery wykorzystujące REST API, oto najważniejsze zmiany:</p>
 
 - Dodano plik request.http zawierający żądania http do testowania REST API.
