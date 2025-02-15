@@ -46,7 +46,7 @@
   </tr>
 </table>
 
-<h2>Opis Gałęzi: Master</h2>
+<h2>Opis Gałęzi: lab2</h2>
 <p>W tej gałęzi aplikacja została przeniesiona na Spring Framework, najważniejsze zmiany:</p>
 
 - Zaimplementowane w poprzedniej gałęzi funkcjonalności zostały w większości usunięte.
