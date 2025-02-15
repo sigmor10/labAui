@@ -46,7 +46,7 @@
   </tr>
 </table>
 
-<h2>Opis Gałęzi: Master</h2>
+<h2>Opis Gałęzi: lab4</h2>
 <p>W tej gałęzi nastąpiło przejście z architektury monolitowej na architekturę mikrousługową, poniżej są pozostałe większe zmiany:</p>
 
 - Podział aplikacji na: 
