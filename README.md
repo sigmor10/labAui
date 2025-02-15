@@ -47,22 +47,19 @@
 </table>
 
 <h2>Opis Gałęzi: Master</h2>
-<p>W tej gałęzi została zaimplementowana aplikacja Java SE, która spełnia następujące warunki:</p>
+<p>W tej gałęzi nastąpiło przejście z architektury monolitowej na architekturę mikrousługową, poniżej są pozostałe większe zmiany:</p>
 
-- Zaimplementowano klasy kategorii i elementów, które są w relacji 1:n
-- Zaimplementowano klasę DTO dla klasy elementów.
-- Obiekty są tworzone tylko z wykorzystaniem builder'a.
+- Podział aplikacji na: 
+  - Aplikację kategorii
+  - Aplikację elementów
+  - Aplikację gateway
+- Aplikacje komunikują się za pomocą REST API,
+- Aplikacje kategorii i elementów mają osobne bazy danych H2.
+- Utworzono klasy EventRepository w celu powiadomienia Aplikacji elementów o utworzeniu / usunięciu kategorii.
+- Dane początkowe mają na sztywno przypisane identyfikatory.
+- Usunięto możliwość komunikacji poprzez konsolę.
 
-<p>Zaimplementowane funkcjonalności:</p>
-
-- Kolekcja kategorii jest zaludniana przy starcie aplikacji.
-- Każda kategoria ma mieć po kilka elementów po starcie aplikacji.
-- Używając pojedyńczego pipeline'a Stream API tworzony jest Set z elementami wszystkich kategorii.
-- Używając pojedyńczego pipeline'a Stream API przefiltrowany został poprzedni wynik według wybranego kryterium i posortować wyniki według innego kryterium.
-- Używając pojedyńczego pipeline'a Stream API przetransformowane są elementy utworzonego Set'u w listę obiektów DTO.
-- Używając mechanizmu serializacji kolekcja kategorii jest zapisywana w serialization.bin, później jest ona odczytywana
-i wypisywana.
-- Używając współbieżnych pipeline'ów Stream API elementy każdej kategorii są wypisywane co 0.2 w osobnych wątkach.
+<p>Funkcjonalności w tej gałęzi pozostają takie same jak w poprzedniej za wyjątkiem komunikacji z użyciem konsoli, która zostałą usunięta</p>
 
 <h2>Autor</h2>
 Jakub Kinder (sigmor10)
