@@ -32,7 +32,7 @@
   
   <tr>
     <td>lab5</td>
-    <td>Angular FrontEndk</td>
+    <td>Angular FrontEnd</td>
   </tr>
   
   <tr>
