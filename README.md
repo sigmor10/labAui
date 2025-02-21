@@ -32,7 +32,7 @@
   
   <tr>
     <td>lab5</td>
-    <td>Angular FrontEndk</td>
+    <td>Angular FrontEnd</td>
   </tr>
   
   <tr>
@@ -46,23 +46,15 @@
   </tr>
 </table>
 
-<h2>Opis Gałęzi: Master</h2>
-<p>W tej gałęzi została zaimplementowana aplikacja Java SE, która spełnia następujące warunki:</p>
+<h2>Opis Gałęzi: lab6</h2>
+<p>W tej gałęzi nastąpiły zmiany ukierunkowane na konteneryzacje z użyciem technologii Docker:</p>
 
-- Zaimplementowano klasy kategorii i elementów, które są w relacji 1:n
-- Zaimplementowano klasę DTO dla klasy elementów.
-- Obiekty są tworzone tylko z wykorzystaniem builder'a.
+- Utworzone zostały pliki dockerfile dla każdej mikro usługi zawierających podstawową konfigurację aplikacji.
+- Utworzone zostały artefakty każdej z aplikacji.
+- Utworzone zostały skrypty bash do automatycznego tworzenia artefaktów i obrazów.
+- Utworzony został plik docker-compose do automatycznego utworzenia i połączenia kontenerów aplikacji.
+- Wydzielone zostały osobne kontenery na bazy danych dla usług kategorii i elementów.
 
-<p>Zaimplementowane funkcjonalności:</p>
-
-- Kolekcja kategorii jest zaludniana przy starcie aplikacji.
-- Każda kategoria ma mieć po kilka elementów po starcie aplikacji.
-- Używając pojedyńczego pipeline'a Stream API tworzony jest Set z elementami wszystkich kategorii.
-- Używając pojedyńczego pipeline'a Stream API przefiltrowany został poprzedni wynik według wybranego kryterium i posortować wyniki według innego kryterium.
-- Używając pojedyńczego pipeline'a Stream API przetransformowane są elementy utworzonego Set'u w listę obiektów DTO.
-- Używając mechanizmu serializacji kolekcja kategorii jest zapisywana w serialization.bin, później jest ona odczytywana
-i wypisywana.
-- Używając współbieżnych pipeline'ów Stream API elementy każdej kategorii są wypisywane co 0.2 w osobnych wątkach.
 
 <h2>Autor</h2>
 Jakub Kinder (sigmor10)
