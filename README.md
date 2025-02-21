@@ -32,7 +32,7 @@
   
   <tr>
     <td>lab5</td>
-    <td>Angular FrontEndk</td>
+    <td>Angular FrontEnd</td>
   </tr>
   
   <tr>
@@ -46,23 +46,17 @@
   </tr>
 </table>
 
-<h2>Opis Gałęzi: Master</h2>
-<p>W tej gałęzi została zaimplementowana aplikacja Java SE, która spełnia następujące warunki:</p>
+<h2>Opis Gałęzi: lab7</h2>
+<p>W tej gałęzi aplikacja została rozwinięta o bardziej zaawansowane elementy wdrożeniowe:</p>
 
-- Zaimplementowano klasy kategorii i elementów, które są w relacji 1:n
-- Zaimplementowano klasę DTO dla klasy elementów.
-- Obiekty są tworzone tylko z wykorzystaniem builder'a.
-
-<p>Zaimplementowane funkcjonalności:</p>
-
-- Kolekcja kategorii jest zaludniana przy starcie aplikacji.
-- Każda kategoria ma mieć po kilka elementów po starcie aplikacji.
-- Używając pojedyńczego pipeline'a Stream API tworzony jest Set z elementami wszystkich kategorii.
-- Używając pojedyńczego pipeline'a Stream API przefiltrowany został poprzedni wynik według wybranego kryterium i posortować wyniki według innego kryterium.
-- Używając pojedyńczego pipeline'a Stream API przetransformowane są elementy utworzonego Set'u w listę obiektów DTO.
-- Używając mechanizmu serializacji kolekcja kategorii jest zapisywana w serialization.bin, później jest ona odczytywana
-i wypisywana.
-- Używając współbieżnych pipeline'ów Stream API elementy każdej kategorii są wypisywane co 0.2 w osobnych wątkach.
+- Dodano usługę serwera konfiguracji.
+- Dodano pliki konfiguracyjne dla każdej z usług (kategorii, elementów i gateway).
+- Dodano usługę serwera Discovery (Eureka).
+- Zmodyfikowano usługi tak, aby pobierały konfiguracje z usługi serwera konfiguracji.
+- Zmodyfikowano usługi tak, aby były rejestrowane w usłudze serwera Discovery.
+- Zmodyfikowane wszystkie usługi tak, aby wykorzystywały serwer Discovery do odnajdywania usługi-odbiorcy.
+- Zmodyfikowano plik docker-compose tak, aby działały dwie instancje usługi elementów.
+- Zmodyfikowano usługę elementów tak, aby zapisywała w logach, że wykonała daną czynność. (potrzebne do sprawdzenia, czy obie instancje są wykorzystywane)
 
 <h2>Autor</h2>
 Jakub Kinder (sigmor10)
