@@ -46,23 +46,19 @@
   </tr>
 </table>
 
-<h2>Opis Gałęzi: Master</h2>
-<p>W tej gałęzi została zaimplementowana aplikacja Java SE, która spełnia następujące warunki:</p>
+<h2>Opis Gałęzi: lab5</h2>
+<p>
+W tej gałęzi została zaimplementowana aplikacja Front End z użyciem frameworka Angular. Pozostałe większe zmiany i
+funkcjonalności:
+</p>
 
-- Zaimplementowano klasy kategorii i elementów, które są w relacji 1:n
-- Zaimplementowano klasę DTO dla klasy elementów.
-- Obiekty są tworzone tylko z wykorzystaniem builder'a.
-
-<p>Zaimplementowane funkcjonalności:</p>
-
-- Kolekcja kategorii jest zaludniana przy starcie aplikacji.
-- Każda kategoria ma mieć po kilka elementów po starcie aplikacji.
-- Używając pojedyńczego pipeline'a Stream API tworzony jest Set z elementami wszystkich kategorii.
-- Używając pojedyńczego pipeline'a Stream API przefiltrowany został poprzedni wynik według wybranego kryterium i posortować wyniki według innego kryterium.
-- Używając pojedyńczego pipeline'a Stream API przetransformowane są elementy utworzonego Set'u w listę obiektów DTO.
-- Używając mechanizmu serializacji kolekcja kategorii jest zapisywana w serialization.bin, później jest ona odczytywana
-i wypisywana.
-- Używając współbieżnych pipeline'ów Stream API elementy każdej kategorii są wypisywane co 0.2 w osobnych wątkach.
+- Możliwość edycji danych kategorii.
+- Pełna komunikacja Front Endu i Back Endu poprzez REST API.
+- Wyświetlanie listy kategorii.
+- Możliwość wejścia na podstronę szczegółów kategorii, w tym listy elementów do niej należącej.
+- Możliwość wejścia na podstronę szczegółów elementu.
+- Zarówno dla kategorii, jak i elementów istnieje możliwość usunięcia z poziomu listy i podglądu szczegółów.
+- Możliwość dodania nowej kategorii i elementu z poziomu widoku ich list.
 
 <h2>Autor</h2>
 Jakub Kinder (sigmor10)
